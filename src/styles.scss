@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+// Set the variables here.
+
+@import "~@progress/kendo-theme-bootstrap/scss/button";
+
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+a, a:focus, a:hover, a:active{
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    outline: none;
+}
+// #f32a2a

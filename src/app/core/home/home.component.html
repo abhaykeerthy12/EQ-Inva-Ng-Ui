@@ -1,0 +1,50 @@
+<!-- Container for sidebar(s) + page content -->
+<ng-sidebar-container>
+<!-- A sidebar -->
+<ng-sidebar 
+    [autoCollapseWidth]=1000
+    [(opened)]="_opened" 
+    [(showBackdrop)]= "_shade"
+    [mode]="_mode"
+    onModeChange="_mode"
+    allowSidebarBackdropControl=true
+    closeOnClickBackdrop=true>
+
+    <!-- sidebar contents -->
+    <a routerLink="/home" routerLinkActive="active"><h5>Add Request</h5></a><br>
+    <a routerLink="/welcome" routerLinkActive="active" ><h5>Test</h5></a>
+
+</ng-sidebar>
+<!-- Page content -->
+<div ng-sidebar-content>
+
+    <!-- bootstrap navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+
+        <div class="text-white bg-dark mr-3 px-2" (click)="_toggleSidebar()">
+            <i class="k-icon k-i-menu"></i>
+        </div>    
+
+        <a class="navbar-brand" href="">
+           <img src="../../../assets/images/equiniti-logo-rounded.png" 
+                width="30" height="30" class="d-inline-block align-top" alt="">
+            Inva
+        </a> 
+        
+        <ul class="nav justify-content-end ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active text-white" href="">Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- the whole application -->
+    <div id="RouterPages" class="container p-3">
+        <router-outlet></router-outlet>  
+    </div>
+
+</div>
+
+</ng-sidebar-container>
+
+
+

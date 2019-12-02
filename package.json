@@ -19,9 +19,18 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@progress/kendo-angular-buttons": "^5.0.1",
+    "@progress/kendo-angular-common": "^1.0.0",
+    "@progress/kendo-angular-inputs": "^6.3.1",
+    "@progress/kendo-angular-l10n": "^2.0.0",
+    "@progress/kendo-angular-popup": "^3.0.0",
+    "@progress/kendo-theme-bootstrap": "^4.6.0",
+    "ng-sidebar": "^9.1.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "@progress/kendo-angular-intl": "^2.0.0",
+    "@progress/kendo-drawing": "^1.5.12"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.19",

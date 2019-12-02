@@ -1,0 +1,18 @@
+::ng-deep ng-sidebar-container{
+    min-height: 100vh;
+
+}
+
+::ng-deep .ng-sidebar{
+    background-color: #67696d !important;
+    padding: 4rem;
+    color: white;
+    margin-top: 3.5rem;
+
+} 
+
+#RouterPages{
+    margin: 0;
+    padding: 0;
+    margin-top: 3.5rem;
+}
