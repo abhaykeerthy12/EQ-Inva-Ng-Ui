@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private _opened: boolean = true;
   private _shade: boolean = false;
   private _mode: string = 'push';
-  private innerWidth: number = 0;
+  private innerWidth: number ;
   private _toggleSidebar() {
     this._opened = !this._opened;
   }
@@ -37,6 +37,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private _userService: UserService) { }
 
   ngOnInit() {
+    if(window.innerWidth <= 1000){
+      this._mode = 'over';
+      this._shade = true;
+    }else{
+      this._mode = 'push';
+      this._shade = false;
+    }
   }
 
   // check is user logged in

@@ -11,6 +11,9 @@ import { ManageUsersComponent } from './core/home/advanced/manage-users/manage-u
 import { UserGuard } from './shared/guards/user.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
+import { RequestHistoryComponent } from './core/home/basic/request-history/request-history.component';
+import { ManageRequestsComponent } from './core/home/advanced/manage-requests/manage-requests.component';
+import { UserSettingsComponent } from './core/home/basic/user-settings/user-settings.component';
 
 
 const routes: Routes = [
@@ -55,6 +58,39 @@ const routes: Routes = [
       {
         path: '',
         component: AddRequestComponent
+      }
+    ]
+  },
+  {
+    path: 'history',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: RequestHistoryComponent
+      }
+    ]
+  },
+  {
+    path: 'settings',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        component: UserSettingsComponent
+      }
+    ]
+  },
+  {
+    path: 'requests',
+    component: HomeComponent,
+    canActivate: [AdminGuard],
+    children: [
+      {
+        path: '',
+        component: ManageRequestsComponent
       }
     ]
   },

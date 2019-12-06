@@ -16,38 +16,37 @@ import { NotificationService } from '@progress/kendo-angular-notification';
 })
 export class ManageUsersComponent implements OnInit, OnDestroy {
 
+  // get notification container
   @ViewChild('container', { read: ViewContainerRef, static: false }) public container: ViewContainerRef;
+  // get upload box
   @ViewChild('labelImport', { read: ViewContainerRef, static: false }) public labelImport: any;
 
   private _subscription: Subscription;
 
+  // grid stuff
   public Excel: boolean =  false;
   public selectableSettings: SelectableSettings;
-
   public sort: SortDescriptor[] = [{
     field: 'Name',
     dir: 'asc'
   }];
-
   public sortChange(sort: SortDescriptor[]): void {
     this.sort = sort;
     this.LoadUsers();
-}
-
-
+  }
   public setSelectableSettings(): void {
     this.selectableSettings = {
         checkboxOnly: true,
         mode: "single"
     };
-}
+  }
 
   constructor(private _formBuilder: FormBuilder, 
               private _userService: UserService,
-              private _notificationService: NotificationService) { 
+              private _notificationService: NotificationService) 
+  { 
     this.allData = this.allData.bind(this);
     this.setSelectableSettings();
-
   }
 
   ngOnInit() {
@@ -74,6 +73,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
   formImport: FormGroup;
   fileToUpload: File = null;
 
+  // get name of uploaded file to upload box
   onFileChange(files: FileList) {
     this.labelImport._data.renderElement.innerText = Array.from(files)
       .map(f => f.name)
@@ -81,6 +81,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     this.fileToUpload = files.item(0);
   }
 
+  // import excel data to db
   Import(){
     this._userService.ExcelRegister(this.fileToUpload).subscribe((data) => {
         this.ShowAlert('Added Successfully!', 'success');
@@ -98,9 +99,8 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     });
   }
 
-
-  
-  public allData(): ExcelExportData {
+  // configure export to excel
+  allData(): ExcelExportData {
     const result: ExcelExportData =  {
         data: process(this.rows, { sort: [{ field: 'UserId', dir: 'asc' }] }).data,
     };
@@ -164,6 +164,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
       });
   }
 
+  // combine all arrays
   CombineArray(roles, userwithroles, users){
 
     this.rows = [];
@@ -212,41 +213,35 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
   }
 
   // add handeler
-  protected addHandler({sender}) {
-     // define all editable fields validators and default values
-     this.formGroup = this._formBuilder.group({
-      Name: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]],
-      Department: ['', Validators.required ]
+  addHandler({sender}) {
+    // define all editable fields validators and default values
+    this.formGroup = this._formBuilder.group({
+    Name: ['', Validators.required],
+    Email: ['', [Validators.required, Validators.email]],
+    Department: ['', Validators.required ]
     });
-
-
     // show the new row editor, with the `FormGroup` build above
     sender.addRow(this.formGroup);
-}
+  }
 
   // confirm action
   saveHandler({sender, rowIndex, formGroup}) {
     // collect the current state of the form
     // `formGroup` arguments is the same as was provided when calling `editRow`
     const user: UserModel = formGroup.value;
-
-      // add new product
-      this._userService.RegisterToDB(user).subscribe((data) => {
-        this.LoadUsers();
-      });
-
-      // close the editor, that is, revert the row back into view mode
-      sender.closeRow(rowIndex);
-      this.ShowAlert('Added Successfully!', 'success');
-
+    // add new product
+    this._userService.RegisterToDB(user).subscribe((data) => {
+      this.LoadUsers();
+    });
+    // close the editor, that is, revert the row back into view mode
+    sender.closeRow(rowIndex);
+    this.ShowAlert('Added Successfully!', 'success');
   }
 
-  protected cancelHandler({sender, rowIndex}) {
-      // close the editor for the given row
-      sender.closeRow(rowIndex);
-      this.LoadUsers();
-
+  cancelHandler({sender, rowIndex}) {
+    // close the editor for the given row
+    sender.closeRow(rowIndex);
+    this.LoadUsers();
   }
 
    // delete product
@@ -262,56 +257,56 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
-// select row
-selectedKeysChange(rows) {
-  if(rows.selectedRows.length > 0){
-    let role = rows.selectedRows[0].dataItem.Role;
-    this.SelectedUserId = rows.selectedRows[0].dataItem.UserId;
-    this.changePermissionTrigger = true;
-    if(role != "User"){
-      this.roleStatus = false;
+  // select row data
+  selectedKeysChange(rows) {
+    if(rows.selectedRows.length > 0){
+      let role = rows.selectedRows[0].dataItem.Role;
+      this.SelectedUserId = rows.selectedRows[0].dataItem.UserId;
+      this.changePermissionTrigger = true;
+      if(role != "User"){
+        this.roleStatus = false;
+      }else{
+        this.roleStatus = true;
+      }
+      this.roleOfSelectedUser = role;
     }else{
-      this.roleStatus = true;
+      this.changePermissionTrigger = false;
+      this.roleOfSelectedUser = '';
+      this.SelectedUserId = '';
+      this.LoadUsers();
     }
-    this.roleOfSelectedUser = role;
-  }else{
-    this.changePermissionTrigger = false;
-    this.roleOfSelectedUser = '';
-    this.SelectedUserId = '';
-    this.LoadUsers();
   }
-}
 
-Permission(role){
+  // change permission of user
+  Permission(role){
+    this.formGroup = this._formBuilder.group({
+      "UserId": [this.SelectedUserId],
+      "Role": [role],
+      "PreviousRole": [this.roleOfSelectedUser]
+    });
+    this._subscription = this._userService.UserPermission(this.formGroup.value);
+    this.ShowAlert('Changed!', 'success');
+    setTimeout(()=>{ 
+      this.changePermissionTrigger = false;
+      this.SelectedUserId = '';
+      role = '';
+      this.roleOfSelectedUser = '';
+      this.LoadUsers();
+    }, 500);
+  }
 
-  this.formGroup = this._formBuilder.group({
-    "UserId": [this.SelectedUserId],
-    "Role": [role],
-    "PreviousRole": [this.roleOfSelectedUser]
-  });
-  this._subscription = this._userService.UserPermission(this.formGroup.value);
-  this.ShowAlert('Changed!', 'success');
-  setTimeout(()=>{ 
-    this.changePermissionTrigger = false;
-    this.SelectedUserId = '';
-    role = '';
-    this.roleOfSelectedUser = '';
-    this.LoadUsers();
-  }, 500);
-}
-
-// alert
-ShowAlert(msg, type){
-  this._notificationService.show({
-      content: msg,
-      cssClass: 'kendo-notify',
-      appendTo: this.container,
-      animation: { type: 'fade', duration: 500 },
-      position: { horizontal: 'center', vertical: 'top' },
-      type: { style: type, icon: true },
-      hideAfter: 500
-  });
-}
+  // alert
+  ShowAlert(msg, type){
+    this._notificationService.show({
+        content: msg,
+        cssClass: 'kendo-notify',
+        appendTo: this.container,
+        animation: { type: 'fade', duration: 500 },
+        position: { horizontal: 'center', vertical: 'top' },
+        type: { style: type, icon: true },
+        hideAfter: 1000
+    });
+  }
 
   
   // search products fn

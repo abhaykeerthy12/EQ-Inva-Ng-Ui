@@ -18,11 +18,20 @@
     <div routerLink="/home" routerLinkActive="active" class="linkDiv">
         <h5>Home</h5>
     </div>
+    <div routerLink="/history" routerLinkActive="active" class="linkDiv">
+        <h5>History</h5>
+    </div>
+    <div routerLink="/requests" routerLinkActive="active" class="linkDiv">
+        <h5>Requests</h5>
+    </div>
     <div routerLink="/products" routerLinkActive="active" class="linkDiv">
         <h5>Products</h5>
     </div>
     <div routerLink="/users" routerLinkActive="active" class="linkDiv">
         <h5>Users</h5>
+    </div>
+    <div routerLink="/settings" routerLinkActive="active" class="linkDiv">
+        <h5>Settings</h5>
     </div>
 
 </ng-sidebar>
@@ -32,7 +41,7 @@
     <!-- bootstrap navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
 
-        <div class="text-white bg-dark mr-3 px-2" (click)="_toggleSidebar()">
+        <div class="text-white bg-dark mr-3 px-2" style="cursor: pointer;" (click)="_toggleSidebar()">
             <i class="k-icon k-i-menu"></i>
         </div>    
 
@@ -43,10 +52,11 @@
         </a> 
         
         <ul class="nav justify-content-end ml-auto">
-            <li class="nav-item">
+            <li class="nav-item" id="Logout">
                 <a class="nav-link active text-white" (click)="Logout()">Logout</a>
             </li>
         </ul>
+
     </nav>
     <!-- the whole application -->
     <div id="RouterPages" class="p-3">

@@ -1,136 +1,129 @@
 <section ic="ManageProducts" class="m-auto" #container>
-
-<h2>Product Management</h2><hr>
-
+<h2 class="pt-2">Product Management</h2><hr>
 <article>
 
-        <div class="card p-2 shadow">
+<div class="card p-2 shadow">
 
-        <div class="card-body">
+    <div class="card-body">
 
-            <div *ngIf="Excel" class="row mb-3">
-                <div class="col-lg-8">
-  
-              <form novalidate [formGroup]="formImport">
-                  <div class="input-group mb-3">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" 
-                               formControlName="importFile" id="importFile"
-                               (change)="onFileChange($event.target.files)">
-                        <label class="custom-file-label" #labelImport for="importFile">Choose Excel File</label>
-                      </div>
-                      <div class="input-group-append">
-                        <span class="input-group-text" (click)="Import()">Upload</span>
-                      </div>
+        <div *ngIf="Excel" class="row mb-3">
+            <div class="col-lg-8">
+
+            <form novalidate [formGroup]="formImport">
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                    <input type="file" class="custom-file-input" 
+                            formControlName="importFile" id="importFile"
+                            (change)="onFileChange($event.target.files)">
+                    <label class="custom-file-label" #labelImport for="importFile">Choose Excel File</label>
                     </div>
-              </form>
-  
-                </div>  
-                <div class="col-lg-4 text-center">
-                      <a href="../../../../../assets/images/EQ-Bg.jpg" class="btn btn-dark px-5 py-2" download>
-                          Download Template
-                      </a>
-                </div>  
-          </div>
-
-        <kendo-grid 
-            [kendoGridBinding]="rows" 
-            [height]="350"
-            [pageSize]="10"
-            [pageable]="true"
-            [resizable]="true"
-            [sortable]="{
-                allowUnsort: 'true',
-                mode: 'multiple'
-            }"
-            [sort]="sort"
-            (sortChange)="sortChange($event)"
-            (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
-            (save)="saveHandler($event)" (remove)="removeHandler($event)"
-            (add)="addHandler($event)">
-
-
-            <ng-template kendoGridToolbarTemplate>
-                <div class="row">
-                    <div class="col-lg-4 mt-2">
-                        <input type="text" 
-                               class="form-control" placeholder="Search!"
-                               id="SearchFieldAddProduct"
-                               #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)">
-                    </div> 
-                    <div class="col-lg-4 mt-2">
-                        <div class="btn-group">
-                            <button kendoButton kendoGridAddCommand [primary]="true" class="btn">Add</button>
-                            <button kendoButton (click)="Excel = !Excel" [primary]="true" class="btn">
-                                <span *ngIf="Excel">Close</span>
-                                <span *ngIf="!Excel">Add From Excel</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mt-2">
-                        <div class="btn-group">
-                            <button kendoButton kendoGridExcelCommand class="btn">Export To Excel</button>
-                            <button kendoButton kendoGridPDFCommand class="btn">Export To PDF</button>
-                        </div>
+                    <div class="input-group-append">
+                    <span class="input-group-text" (click)="Import()">Upload</span>
                     </div>
                 </div>
-            </ng-template>
-            
-            <kendo-grid-column field="Name" title="Name" width="220">
-            </kendo-grid-column>
-            <kendo-grid-column field="Type" title="Type" width="220">
-            </kendo-grid-column>
-            <kendo-grid-column field="Quantity" editor="numeric" title="Quantity" width="150">
-            </kendo-grid-column>
-            <kendo-grid-column field="Price" editor="numeric" title="Price" width="150">
-            </kendo-grid-column>
+            </form>
 
-            <kendo-grid-command-column title="Actions" width="120">
-            <ng-template kendoGridCellTemplate let-isNew="isNew">
-                <!-- edit command directive, will be visible when not in edit mode -->
-                <button kendoGridEditCommand [primary]="true">
-                    <span><i class="im im-pencil" style="font-size: 15px;"></i></span>
-                </button>
-                <!-- remove command directive, will be visible when not in edit mode -->
-                <button kendoGridRemoveCommand class="bg-danger text-white">
-                    <span><i class="im im-trash-can" style="font-size: 15px;"></i></span>
-                </button>
-                <!-- save command directive, will be visible when in edit mode -->
-                <button kendoGridSaveCommand [disabled]="formGroup?.invalid" class="bg-success text-white">
-                    <span *ngIf="isNew"> <i class="im im-plus" style="font-size: 15px;"></i> </span>
-                    <span *ngIf="!isNew"> <i class="im im-check-mark" style="font-size: 15px;"></i> </span>
-                </button>
-                <!-- cancel command directive, will be visible when in edit mode -->
-                <button kendoGridCancelCommand class="bg-danger text-white">
-                    <span><i class="im im-x-mark" style="font-size: 15px;"></i> </span>
-                </button>
-            </ng-template>
-            </kendo-grid-command-column>
-            <kendo-grid-excel fileName="Products.xlsx" [fetchData]="allData"></kendo-grid-excel>
-            <kendo-grid-pdf 
-                fileName="Products.pdf"
-                paperSize="A4"
-                [scale]="0.8"
-                [repeatHeaders]="true" [allPages]="true"
-                [margin]="{ top: '1cm', left: '1cm', right: '1cm', bottom: '1cm' }">
-                <kendo-grid-column field="Name" title="Name">
-                </kendo-grid-column>
-                <kendo-grid-column field="Type" title="Type">
-                </kendo-grid-column>
-                <kendo-grid-column field="Quantity" title="Quantity">
-                </kendo-grid-column>
-                <kendo-grid-column field="Price" title="Price">
-                </kendo-grid-column>
-            </kendo-grid-pdf>
-        </kendo-grid>
-
+            </div>  
+            <div class="col-lg-4 text-center">
+                    <a href="../../../../../assets/images/EQ-Bg.jpg" class="btn btn-dark px-5 py-2" download>
+                        Download Template
+                    </a>
+            </div>  
         </div>
 
+    <kendo-grid 
+    [kendoGridBinding]="rows" 
+    [height]="410"
+    [pageSize]="10"
+    [pageable]="true"
+    [resizable]="true"
+    [sortable]="{
+        allowUnsort: 'true',
+        mode: 'multiple'
+    }"
+    [sort]="sort"
+    (sortChange)="sortChange($event)"
+    (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+    (save)="saveHandler($event)" (remove)="removeHandler($event)"
+    (add)="addHandler($event)">
+
+
+    <ng-template kendoGridToolbarTemplate>
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <input type="text" 
+                        class="form-control" placeholder="Search!"
+                        id="SearchFieldAddProduct"
+                        #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)">
+            </div> 
+            <div class="col-lg-4 mt-2">
+                <div class="btn-group">
+                    <button kendoButton kendoGridAddCommand [primary]="true" class="btn">Add</button>
+                    <button kendoButton (click)="Excel = !Excel" [primary]="true" class="btn">
+                        <span *ngIf="Excel">Close</span>
+                        <span *ngIf="!Excel">Add From Excel</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-2">
+                <div class="btn-group">
+                    <button kendoButton kendoGridExcelCommand class="btn">Export To Excel</button>
+                    <button kendoButton kendoGridPDFCommand class="btn">Export To PDF</button>
+                </div>
+            </div>
         </div>
+    </ng-template>
+    
+    <kendo-grid-column field="Name" title="Name" width="220">
+    </kendo-grid-column>
+    <kendo-grid-column field="Type" title="Type" width="220">
+    </kendo-grid-column>
+    <kendo-grid-column field="Quantity" editor="numeric" title="Quantity" width="150">
+    </kendo-grid-column>
+    <kendo-grid-column field="Price" editor="numeric" title="Price" width="150">
+    </kendo-grid-column>
 
+    <kendo-grid-command-column title="Actions" width="120">
+    <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <!-- edit command directive, will be visible when not in edit mode -->
+        <button kendoGridEditCommand [primary]="true">
+            <span><i class="im im-pencil" style="font-size: 15px;"></i></span>
+        </button>
+        <!-- remove command directive, will be visible when not in edit mode -->
+        <button kendoGridRemoveCommand class="bg-danger text-white">
+            <span><i class="im im-trash-can" style="font-size: 15px;"></i></span>
+        </button>
+        <!-- save command directive, will be visible when in edit mode -->
+        <button kendoGridSaveCommand [disabled]="formGroup?.invalid" class="bg-success text-white">
+            <span *ngIf="isNew"> <i class="im im-plus" style="font-size: 15px;"></i> </span>
+            <span *ngIf="!isNew"> <i class="im im-check-mark" style="font-size: 15px;"></i> </span>
+        </button>
+        <!-- cancel command directive, will be visible when in edit mode -->
+        <button kendoGridCancelCommand class="bg-danger text-white">
+            <span><i class="im im-x-mark" style="font-size: 15px;"></i> </span>
+        </button>
+    </ng-template>
+    </kendo-grid-command-column>
+    <kendo-grid-excel fileName="Products.xlsx" [fetchData]="allData"></kendo-grid-excel>
+    <kendo-grid-pdf 
+        fileName="Products.pdf"
+        paperSize="A4"
+        [scale]="0.8"
+        [repeatHeaders]="true" [allPages]="true"
+        [margin]="{ top: '1cm', left: '1cm', right: '1cm', bottom: '1cm' }">
+        <kendo-grid-column field="Name" title="Name">
+        </kendo-grid-column>
+        <kendo-grid-column field="Type" title="Type">
+        </kendo-grid-column>
+        <kendo-grid-column field="Quantity" title="Quantity">
+        </kendo-grid-column>
+        <kendo-grid-column field="Price" title="Price">
+        </kendo-grid-column>
+    </kendo-grid-pdf>
+    </kendo-grid>
 
+    </div>
+
+</div>
 </article>
-
-
-
 </section>

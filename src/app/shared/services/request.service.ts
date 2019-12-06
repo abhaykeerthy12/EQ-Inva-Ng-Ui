@@ -41,12 +41,11 @@ UpdateStatus(reqid, formData){
     "ProductId": formData.ProductId,
     "Quantity": formData.Quantity,
     "ManagerValidated": formData.ManagerValidated,
-    "Status": formData.Status
+    "Status": formData.Status,
+    "Summary": formData.Summary
   }
 
-  return this._http.put(this.Root_URL + '/api/requests/' + reqid, body).subscribe(res => {
-    console.log(res);
-  });
+  return this._http.put(this.Root_URL + '/api/requests/' + reqid, body);
 }
 
  // delete request

@@ -31,6 +31,7 @@ import { ManagerGuard } from './shared/guards/manager.guard';
 import { UserGuard } from './shared/guards/user.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { ManageRequestsComponent } from './core/home/advanced/manage-requests/manage-requests.component';
 
 
 
@@ -50,7 +51,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
     AboutComponent,
     ContactComponent,
     ManageProductsComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    ManageRequestsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ export interface RequestModel {
     ProductId?: string;
     Quantity?: number;
     Status?: string;
+    Summary?: string;
     ManagerValidated?: boolean;
     RequestedDate?: string;
 }

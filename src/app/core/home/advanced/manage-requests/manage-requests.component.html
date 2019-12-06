@@ -1,0 +1,91 @@
+<section id="AddRequests" class="m-auto" #container>
+<h2 class="pt-2">Request Management</h2><hr>
+<article>
+
+    <div class="card p-2 shadow">
+
+    <div class="card-body">
+
+        <kendo-grid 
+        [kendoGridBinding]="rows" 
+        [height]="410"
+        [pageSize]="10"
+        [pageable]="true"
+        [resizable]="true"
+        [selectable]="selectableSettings"
+        (selectionChange)="selectedKeysChange($event)"
+        [sortable]="{
+            allowUnsort: 'true',
+            mode: 'multiple'
+        }"
+        [sort]="sort"
+        (sortChange)="sortChange($event)"
+        >
+
+
+        <ng-template kendoGridToolbarTemplate>
+        <div class="row" *ngIf="!ConfirmReject">
+            <div class="col-lg-12 mt-2" *ngIf="!Selected">
+                <input type="text" 
+                        class="form-control" placeholder="Search!"
+                        id="SearchFieldAddProduct"
+                        #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)">
+            </div> 
+            <div class="col-lg-6 mt-2" *ngIf="Selected">
+                <input type="text" 
+                        class="form-control" placeholder="Search!"
+                        id="SearchFieldAddProduct"
+                        #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)">
+            </div> 
+            <div class="col-lg-6 mt-2" *ngIf="Selected">
+            <div class="btn-group">
+                    <button class="btn btn-success" (click)="Submit('Approve')">Accept</button>
+                    <button class="btn btn-danger" (click)="ConfirmReject = !ConfirmReject">Reject</button>
+            </div>
+            </div>
+        </div>
+        <div *ngIf="ConfirmReject && Selected">
+            <form action="" class="row mt-2">
+                <div class="col-lg-10">
+                    <input type="text" [(ngModel)]="SummaryString" 
+                           class="form-control" placeholder="Reason for rejection"
+                           [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-dark btn-block" 
+                    (click)="Submit('Reject')">Proceed</button>
+                </div>
+            </form>
+        </div>
+        </ng-template>
+            
+        <kendo-grid-checkbox-column width="40"></kendo-grid-checkbox-column>
+        <kendo-grid-column field="EmployeeName" title="User" width="120">
+        </kendo-grid-column>
+        <kendo-grid-column field="Department" title="Department" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column field="Name" title="Product" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column field="Type" title="Type" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column field="Quantity" editor="numeric" title="Quantity" width="90">
+        </kendo-grid-column>
+        <kendo-grid-column field="ProductQuantity" editor="numeric" title="Product Quantity" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column field="Date" title="Date" width="110">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span>
+                {{dataItem.Date | date}}
+                </span>
+            </ng-template>
+        </kendo-grid-column>
+        </kendo-grid>
+
+    </div>
+
+    </div>
+
+
+</article>
+        
+</section>

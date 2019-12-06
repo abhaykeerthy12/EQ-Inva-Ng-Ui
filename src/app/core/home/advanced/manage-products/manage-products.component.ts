@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { ProductModel } from 'src/app/shared/models/product';
 import { ExcelExportData } from '@progress/kendo-angular-excel-export';
-import { FileRestrictions } from '@progress/kendo-angular-upload';
 import { NotificationService } from '@progress/kendo-angular-notification';
 
 @Component({
@@ -15,27 +14,29 @@ import { NotificationService } from '@progress/kendo-angular-notification';
 })
 export class ManageProductsComponent implements OnInit, OnDestroy {
 
+  // get notification container 
   @ViewChild('container', { read: ViewContainerRef, static: false }) public container: ViewContainerRef;
+  // get upload box
   @ViewChild('labelImport', { read: ViewContainerRef, static: false }) public labelImport: any;
 
   private _subscription: Subscription;
-
+  // to know if excel option is selected
   public Excel: boolean =  false;
-
   
+  // grid stuff
   public sort: SortDescriptor[] = [{
     field: 'Name',
     dir: 'asc'
   }];
-
   public sortChange(sort: SortDescriptor[]): void {
     this.sort = sort;
     this.LoadProducts();
-}
+  }
 
   constructor(private _formBuilder: FormBuilder,
               private _productService: ProductService,
-              private _notificationService: NotificationService) { 
+              private _notificationService: NotificationService) 
+  { 
     this.allData = this.allData.bind(this);
   }
 
@@ -54,6 +55,8 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
   formImport: FormGroup;
   fileToUpload: File = null;
 
+
+  // change name of the uploaded field to uploaded file name
   onFileChange(files: FileList) {
     this.labelImport._data.renderElement.innerText = Array.from(files)
       .map(f => f.name)
@@ -61,6 +64,7 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
     this.fileToUpload = files.item(0);
   }
 
+  // import excel data to db
   Import(){
     this._productService.ExcelAddToDB(this.fileToUpload).subscribe((data) => {
         this.ShowAlert('Added Successfully!', 'success');
@@ -78,7 +82,7 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-
+  // configure export to excel to get all data despite of paging or filtering
   public allData(): ExcelExportData {
     const result: ExcelExportData =  {
         data: process(this.rows, { sort: [{ field: 'ProductID', dir: 'asc' }] }).data,
@@ -99,7 +103,7 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
   }
 
   // add handeler
-  protected addHandler({sender}) {
+  addHandler({sender}) {
      // define all editable fields validators and default values
      this.formGroup = this._formBuilder.group({
       Id: [''],
@@ -108,25 +112,21 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
       Quantity: ['', Validators.required ],
       Price: ['', Validators.required ]
     });
-
-
     // show the new row editor, with the `FormGroup` build above
     sender.addRow(this.formGroup);
-}
+  }
 
   // edit handler
   editHandler({sender, rowIndex, dataItem}){
-
-      // define all editable fields validators and default values
-      this.formGroup = this._formBuilder.group({
-        Id: [dataItem.Id],
-        Name: [dataItem.Name, Validators.required],
-        Type: [dataItem.Type, Validators.required],
-        Quantity: [dataItem.Quantity, Validators.required ],
-        Price: [dataItem.Price, Validators.required ]
-      });
-
-      // put the row in edit mode, with the `FormGroup` build above
+    // define all editable fields validators and default values
+    this.formGroup = this._formBuilder.group({
+      Id: [dataItem.Id],
+      Name: [dataItem.Name, Validators.required],
+      Type: [dataItem.Type, Validators.required],
+      Quantity: [dataItem.Quantity, Validators.required ],
+      Price: [dataItem.Price, Validators.required ]
+    });
+     // put the row in edit mode, with the `FormGroup` build above
      sender.editRow(rowIndex, this.formGroup);
   }
 
@@ -135,25 +135,22 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
     // collect the current state of the form
     // `formGroup` arguments is the same as was provided when calling `editRow`
     const product: ProductModel = formGroup.value;
-
-    console.log(isNew)
-    console.log(product)
-
     if(isNew){
-      // add new product
-      this._productService.AddProduct(product).subscribe((data) => {
+
+        // add new product
+        this._productService.AddProduct(product).subscribe((data) => {
         this.ShowAlert('Added Successfully!', 'success');
         this.LoadProducts();
       });
 
     }else{
+
        // update new product
        this._productService.UpdateProduct(product).subscribe((data) => {
         this.ShowAlert('Updated Successfully!', 'success');
          this.LoadProducts();
        });
     }
-
     // close the editor, that is, revert the row back into view mode
     sender.closeRow(rowIndex);
   }
@@ -164,27 +161,26 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
       this.ShowAlert('Deleted!', 'success');
       this.LoadProducts();
     });
-}
+  }
 
-  protected cancelHandler({sender, rowIndex}) {
-      // close the editor for the given row
-      sender.closeRow(rowIndex);
-      this.LoadProducts();
-
+  cancelHandler({sender, rowIndex}) {
+    // close the editor for the given row
+    sender.closeRow(rowIndex);
+    this.LoadProducts();
   }
   
-// alert
-ShowAlert(msg, type){
-  this._notificationService.show({
-      content: msg,
-      cssClass: 'kendo-notify',
-      appendTo: this.container,
-      animation: { type: 'fade', duration: 500 },
-      position: { horizontal: 'center', vertical: 'top' },
-      type: { style: type, icon: true },
-      hideAfter: 500
-  });
-}
+  // alert
+  ShowAlert(msg, type){
+    this._notificationService.show({
+        content: msg,
+        cssClass: 'kendo-notify',
+        appendTo: this.container,
+        animation: { type: 'fade', duration: 500 },
+        position: { horizontal: 'center', vertical: 'top' },
+        type: { style: type, icon: true },
+        hideAfter: 1000
+    });
+  }
 
   
   // search products fn
