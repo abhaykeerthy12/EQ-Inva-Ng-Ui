@@ -1,6 +1,8 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { fade } from 'src/app/shared/animations/animations';
 import { Sidebar } from 'ng-sidebar';
+import { UserService } from '../../shared/services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,8 +10,9 @@ import { Sidebar } from 'ng-sidebar';
   styleUrls: ['./home.component.scss'],
   animations: [ fade ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
+  // sidebar conf
   private _opened: boolean = true;
   private _shade: boolean = false;
   private _mode: string = 'push';
@@ -28,11 +31,42 @@ export class HomeComponent implements OnInit {
       this._shade = false;
     }
   }
+
+  private _subscription: Subscription;
   
-  constructor() { }
+  constructor(private _userService: UserService) { }
 
   ngOnInit() {
   }
 
+  // check is user logged in
+  IsLoggedIn(){
+    return this._userService.isUserLoggedIn();
+  }
+
+  // logout user
+  Logout(){
+    this._userService.UserLogout();
+  }
+
+  // check if user is admin
+  IsAdmin(){
+    return this._userService.IsAdmin();
+  }
+
+  // check if user is admin
+  IsManager(){
+    return this._userService.IsManager();
+  }
+
+  // check if user is admin
+  IsCreator(){
+    return this._userService.IsCreator();
+  }
+
+  ngOnDestroy(){
+    if(this._subscription != null)
+      this._subscription.unsubscribe();
+  }
   
 }

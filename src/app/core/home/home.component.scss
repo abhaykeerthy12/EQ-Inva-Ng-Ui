@@ -5,9 +5,39 @@
 
 ::ng-deep .ng-sidebar{
     background-color: #67696d !important;
-    padding: 4rem;
     color: white;
     margin-top: 3.5rem;
+    text-align: center;
+    z-index: 10 !important;
+
+    #UserBox{
+        margin-top: 1rem;
+        padding: 1rem 0rem;
+
+        img{
+            height: 75px;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .linkDiv{
+        padding: 0.5rem 5rem;
+        cursor: pointer;
+    }
+    .active{
+        background-color: #e4e7ec !important;
+        color: #000 !important;
+    }
+
+    .linkDiv,.active, 
+    .linkDiv:active, .active:active, 
+    .linkDiv:focus, .active:focus, 
+    .linkDiv:hover, .active:hover{
+        text-decoration: none;
+        border: none;
+        outline: none;
+    }
 
 } 
 

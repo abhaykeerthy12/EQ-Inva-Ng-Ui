@@ -1,2 +1,59 @@
-<p>external works!</p>
-<router-outlet></router-outlet>
+<div class="main-container">
+
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
+    <a class="navbar-brand" routerLink="/welcome" routerLinkActive="active" >
+    <img src="../../../assets/images/equiniti-logo-rounded.png" 
+            width="30" height="30" class="d-inline-block align-top" alt="">
+        Inva
+    </a> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/welcome" routerLinkActive="active" >Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/about" routerLinkActive="active" >About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/contact" routerLinkActive="active" >Contact Us</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</header>
+
+<section id="ExternalSection">
+    <router-outlet></router-outlet>
+</section>
+
+<footer class="bg-dark text-white p-3 mt-5">
+
+    <div class="row mt-5">
+
+        <div class="col-lg-6">
+            <div id="FooterImg">
+                <img src="../../../../assets/images/equiniti-logo-rounded.png" alt="">
+                <h2>Equiniti Inva</h2>
+                <h6 class="mt-3 mb-5">Inventory Management Solution From Equiniti</h6>
+            </div>
+        </div>
+
+        <div id="FooterText" class="col-lg-6">
+
+            hhh
+
+        </div>
+
+    </div>
+
+    <div id="CopyRight" class="text-center mt-5">
+        Copyright &copy; {{ year }} Equiniti - All Rights Reserved
+    </div>
+</footer>
+      
+</div>

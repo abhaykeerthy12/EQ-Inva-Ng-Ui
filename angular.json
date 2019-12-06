@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/bootstrap/bootstrap.min.css",  
+              "src/assets/bootstrap/bootstrap.min.css",
+              "src/assets/iconmaster/css/iconmonstr-iconic-font.min.css",
               "src/styles.scss"
             ],
             "scripts": [

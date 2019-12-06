@@ -1,1 +1,53 @@
-<p>welcome works!</p>
+<section id='WelcomeSection'>
+
+    <article id="ShowCase" class="shadow-lg">
+            <article id="TitleBox" class="row">
+                <div id="imgDiv" class="col-lg-4">
+                        <img src="../../../../assets/images/equiniti-logo-rounded.png" alt="">
+                </div>
+                <div id="TitleDiv" class="col-lg-8">
+                    <h1>Inva</h1>
+                </div>
+            </article>
+    </article>
+
+    <article id="Hero"></article>
+
+    <article id="Login" class="card shadow-lg p-3" #container>
+
+        <div class="card-header">
+            <h4>Login!</h4>
+        </div>
+
+        <form [formGroup]="LoginForm" (ngSubmit)="Login()" class="card-body">
+
+            <div class="form-group">
+                <label for="Email">Email address</label>
+                <input type="email" class="form-control" 
+                       id="Email" aria-describedby="emailHelp"
+                       placeholder="Enter your email" required formControlName="Email">
+                <small id="emailHelp" class="form-text text-muted">
+                    Hint: example@example.com
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" class="form-control" 
+                       id="Password" aria-describedby="passwordHelp"
+                       placeholder="Enter your password" required formControlName="Password">
+                <small id="passwordHelp" class="form-text text-muted">
+                    Hint: Password should be of minimum 6 alphanumeric characters
+                </small>
+            </div>
+            
+            <button type="submit" class="btn btn-dark mb-5 shadow">Let's Go!</button>
+
+        </form>
+
+    </article>
+
+    <article id="Content" class="row">
+        <h2 class="col-lg-6">A Privacy Focused Inventory Management Solution From Equiniti.</h2>
+    </article>
+
+</section>
