@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { NotificationService } from '@progress/kendo-angular-notification';
 import { SelectableSettings } from '@progress/kendo-angular-grid';
 import { RequestService } from 'src/app/shared/services/request.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-add-request',
@@ -39,6 +40,7 @@ export class AddRequestComponent implements OnInit, OnDestroy {
   constructor(private _formBuilder: FormBuilder,
               private _productService: ProductService,
               private _requestService: RequestService,
+              private _userService: UserService,
               private _notificationService: NotificationService) 
   {
     this.setSelectableSettings();
@@ -46,6 +48,7 @@ export class AddRequestComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.LoadProducts(); 
+    this.LoadUser();
     this.CreateForm();
   }
 
@@ -57,6 +60,7 @@ export class AddRequestComponent implements OnInit, OnDestroy {
   ProductID = "";
   ProductQuantity:number;
   Selected: boolean = false;
+  ChPwd:boolean = false;
 
   // create a form to get details to export to request table
   CreateForm(){
@@ -64,6 +68,16 @@ export class AddRequestComponent implements OnInit, OnDestroy {
       EmployeeId: [''],
       ProductId: [''],
       Quantity: ['', [Validators.required]]
+    });
+  }
+
+  LoadUser(){
+    this._subscription = this._userService.GetAllUserData().subscribe((data) => {
+      data.forEach(value => {
+        if(value.Id == value.CurrentUserId){
+            this.ChPwd = value.ChangePwd;
+         }
+       });
     });
   }
   

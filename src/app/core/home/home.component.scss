@@ -7,22 +7,17 @@
     background-color: #67696d !important;
     color: white;
     margin-top: 3.5rem;
-    text-align: center;
     z-index: 10 !important;
 
-    #UserBox{
-        margin-top: 1rem;
-        padding: 1rem 0rem;
-
-        img{
-            height: 75px;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
+    #FirstLink{
+        margin-top: 2rem;
     }
 
     .linkDiv{
-        padding: 0.5rem 5rem;
+        padding-top: 0.5rem;
+        padding-left: 2rem;
+        padding-right: 5rem;
+        padding-bottom: 0.5rem;
         cursor: pointer;
     }
     .active{

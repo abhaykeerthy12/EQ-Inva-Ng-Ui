@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
+
   // check is user logged in
   IsLoggedIn(){
     return this._userService.isUserLoggedIn();

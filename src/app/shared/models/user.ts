@@ -6,5 +6,6 @@ export interface UserModel {
     Email?: string;
     Password?: string;
     ConfirmPassword?: string;
+    ChangePwd?: boolean;
     IsActive?: boolean
 }
