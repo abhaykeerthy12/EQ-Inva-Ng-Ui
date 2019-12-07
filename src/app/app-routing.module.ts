@@ -14,6 +14,7 @@ import { AdminGuard } from './shared/guards/admin.guard';
 import { RequestHistoryComponent } from './core/home/basic/request-history/request-history.component';
 import { ManageRequestsComponent } from './core/home/advanced/manage-requests/manage-requests.component';
 import { UserSettingsComponent } from './core/home/basic/user-settings/user-settings.component';
+import { ManagerGuard } from './shared/guards/manager.guard';
 
 
 const routes: Routes = [
@@ -86,7 +87,7 @@ const routes: Routes = [
   {
     path: 'requests',
     component: HomeComponent,
-    canActivate: [AdminGuard],
+    canActivate: [ManagerGuard],
     children: [
       {
         path: '',

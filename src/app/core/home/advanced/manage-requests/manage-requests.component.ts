@@ -48,6 +48,7 @@ export class ManageRequestsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.LoadRequest(); 
+    this.isManager = this._userService.IsManager();
   }
 
   requests = [];
@@ -70,6 +71,7 @@ export class ManageRequestsComponent implements OnInit, OnDestroy {
   ProductQuantity:number;
   ProductPrice:number;
   SummaryString:string = "";
+  isManager:boolean = false;
   
  // Get all requests from the server
  LoadRequest(){
@@ -77,8 +79,14 @@ export class ManageRequestsComponent implements OnInit, OnDestroy {
   this._subscription =  this._requestService.GetRequest().subscribe(
     (data) => {
         data.forEach(value => {
-          if(value.Status == "Pending"){
-            this.requests.push(value);
+          if(this.isManager){
+            if(value.Status == "Pending"){
+              this.requests.push(value);
+            }
+          }else{
+            if(value.Status == "Proceed"){
+              this.requests.push(value);
+            }
           }
         });
         this.LoadProducts();
@@ -102,7 +110,13 @@ LoadUsers(){
   this._subscription =  this._userService.GetAllUserData().subscribe(
     (data) => {
         data.forEach(value => {
+          if(this.isManager){
+            if(value.Department == localStorage.getItem('Department')){
+              this.users.push(value);
+           }
+          }else{
             this.users.push(value);
+          }
         });
         this.CombineArray(this.products, this.requests, this.users);
     });
@@ -203,7 +217,7 @@ CombineArray(products, requests, users){
           ProductId: [this.ProductID],
           Quantity: [this.RequestQuantity],
           Status: ['Approved'],
-          Summary: ['Approved By Manager']
+          Summary: ['Approved By Admin']
         });
         this._requestService.UpdateStatus(this.RequestForm.value.RequestId, this.RequestForm.value).subscribe();
 
@@ -217,6 +231,36 @@ CombineArray(products, requests, users){
         });
         this._productService.UpdateProduct(this.ProductForm.value).subscribe(res => {
           this.ShowAlert('Approved', 'success');
+          this.Selected = false;
+          this.LoadRequest();
+        });;
+      }
+    }else if(status == 'Proceed'){
+      if(TmpQuantity < 0){
+        this.ShowAlert('Quantity Exceeded', 'error');
+      }else{
+
+      this.RequestForm = this._formBuilder.group({
+          RequestId: [this.RequestID],
+          EmployeeId: [this.EmployeeID],
+          ProductId: [this.ProductID],
+          Quantity: [this.RequestQuantity],
+          ManagerValidated: [true],
+          Status: ['Proceed'],
+          Summary: ['Validated By Manager']
+        });
+        this._requestService.UpdateStatus(this.RequestForm.value.RequestId, this.RequestForm.value).subscribe();
+
+        // we also need to update products quuantity
+        this.ProductForm = this._formBuilder.group({
+          Id: [this.ProductID],
+          Name: [this.ProductName],
+          Type: [this.ProductType],
+          Quantity: [TmpQuantity],
+          Price: [this.ProductPrice]
+        });
+        this._productService.UpdateProduct(this.ProductForm.value).subscribe(res => {
+          this.ShowAlert('Done', 'success');
           this.Selected = false;
           this.LoadRequest();
         });;

@@ -14,6 +14,10 @@ export class ManagerGuard implements CanActivate {
        if(localStorage.getItem('ACCESS_TOKEN') != null){
         if(localStorage.getItem('Manager') == "Manager" && localStorage.getItem('Manager') != ""){
           return true;
+        }else if(localStorage.getItem('Admin') == "Admin" && localStorage.getItem('Admin') != ""){
+          return true;
+        }else if(localStorage.getItem('Creator') == "Creator" && localStorage.getItem('Creator') != ""){
+          return true;
         }else{
           this._router.navigate(['/home']);
           return false;

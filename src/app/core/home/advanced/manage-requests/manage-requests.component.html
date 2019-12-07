@@ -39,7 +39,8 @@
             </div> 
             <div class="col-lg-6 mt-2" *ngIf="Selected">
             <div class="btn-group">
-                    <button class="btn btn-success" (click)="Submit('Approve')">Accept</button>
+                    <button *ngIf="isManager" class="btn btn-success" (click)="Submit('Proceed')">Proceed</button>
+                    <button *ngIf="!isManager" class="btn btn-success" (click)="Submit('Approve')">Accept</button>
                     <button class="btn btn-danger" (click)="ConfirmReject = !ConfirmReject">Reject</button>
             </div>
             </div>

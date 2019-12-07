@@ -17,13 +17,14 @@
     <div routerLink="/history" routerLinkActive="active" class="linkDiv">
         <h5>History</h5>
     </div>
-    <div routerLink="/requests" routerLinkActive="active" class="linkDiv">
+    <div routerLink="/requests" routerLinkActive="active" class="linkDiv" 
+        *ngIf="(IsManager() || IsAdmin()) || (IsCreator())">
         <h5>Requests</h5>
     </div>
-    <div routerLink="/products" routerLinkActive="active" class="linkDiv">
+    <div routerLink="/products" *ngIf="IsAdmin() || IsCreator()" routerLinkActive="active" class="linkDiv">
         <h5>Products</h5>
     </div>
-    <div routerLink="/users" routerLinkActive="active" class="linkDiv">
+    <div routerLink="/users" *ngIf="IsAdmin() || IsCreator()" routerLinkActive="active" class="linkDiv">
         <h5>Users</h5>
     </div>
     <div routerLink="/settings" routerLinkActive="active" class="linkDiv">

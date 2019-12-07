@@ -51,6 +51,8 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
               // if everything ok then add values to localstorage and redirect 
               localStorage.setItem('ACCESS_TOKEN', data['access_token']);
+              localStorage.setItem('Department', data['Department']);
+              localStorage.setItem('Name', data['Name']);
               if(data['roles'] != "[]")
               {
                 if (data['roles'].includes('\"')) 
