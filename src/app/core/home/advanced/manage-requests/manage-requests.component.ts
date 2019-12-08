@@ -266,14 +266,26 @@ CombineArray(products, requests, users){
         });;
       }
     }else if(status == 'Reject'){
-      this.RequestForm = this._formBuilder.group({
-        RequestId: [this.RequestID],
-        EmployeeId: [this.EmployeeID],
-        ProductId: [this.ProductID],
-        Quantity: [this.RequestQuantity],
-        Status: ['Rejected'],
-        Summary: [this.SummaryString]
-      });
+        if(this.isManager){
+          this.RequestForm = this._formBuilder.group({
+            RequestId: [this.RequestID],
+            EmployeeId: [this.EmployeeID],
+            ProductId: [this.ProductID],
+            Quantity: [this.RequestQuantity],
+            Status: ['Rejected'],
+            ManagerValidated: [true],
+            Summary: [this.SummaryString]
+          });
+      }else{
+        this.RequestForm = this._formBuilder.group({
+          RequestId: [this.RequestID],
+          EmployeeId: [this.EmployeeID],
+          ProductId: [this.ProductID],
+          Quantity: [this.RequestQuantity],
+          Status: ['Rejected'],
+          Summary: [this.SummaryString]
+        });
+      }
       this.ConfirmReject = !this.ConfirmReject; 
       this.Selected = false;
       this._requestService.UpdateStatus(this.RequestForm.value.RequestId, this.RequestForm.value)

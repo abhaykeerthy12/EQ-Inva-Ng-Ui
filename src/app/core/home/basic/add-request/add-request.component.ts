@@ -60,7 +60,7 @@ export class AddRequestComponent implements OnInit, OnDestroy {
   ProductID = "";
   ProductQuantity:number;
   Selected: boolean = false;
-  ChPwd:boolean = false;
+  ChPwd:boolean = true;
 
   // create a form to get details to export to request table
   CreateForm(){

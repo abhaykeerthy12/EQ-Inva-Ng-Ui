@@ -81,6 +81,11 @@
     <kendo-grid-column field="Quantity" editor="numeric" title="Quantity" width="150">
     </kendo-grid-column>
     <kendo-grid-column field="Price" editor="numeric" title="Price" width="150">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <span>
+            {{dataItem.Price | currency: 'INR'}}
+            </span>
+        </ng-template>
     </kendo-grid-column>
 
     <kendo-grid-command-column title="Actions" width="120">
