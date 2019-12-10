@@ -75,6 +75,11 @@ UpdateUser(formData){
   return this._http.put(this.Root_URL + '/api/account/updateuser', body);
 }
 
+// delete user
+DeleteFromDB(Id){
+  return this._http.delete(this.Root_URL + '/api/account/' + Id);
+}
+
 // change password
 ChangePassword(formData){
   

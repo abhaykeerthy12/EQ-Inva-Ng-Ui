@@ -10,7 +10,7 @@ export class ManagerGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-       // check if logged in user is admin
+       // check if logged in user is manager or above
        if(localStorage.getItem('ACCESS_TOKEN') != null){
         if(localStorage.getItem('Manager') == "Manager" && localStorage.getItem('Manager') != ""){
           return true;

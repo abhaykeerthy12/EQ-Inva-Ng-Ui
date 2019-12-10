@@ -15,6 +15,8 @@ import { RequestHistoryComponent } from './core/home/basic/request-history/reque
 import { ManageRequestsComponent } from './core/home/advanced/manage-requests/manage-requests.component';
 import { UserSettingsComponent } from './core/home/basic/user-settings/user-settings.component';
 import { ManagerGuard } from './shared/guards/manager.guard';
+import { CreatorGuard } from './shared/guards/creator.guard';
+import { DashboardComponent } from './core/home/advanced/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -114,6 +116,17 @@ const routes: Routes = [
       {
         path: '',
         component: ManageUsersComponent
+      }
+    ]
+  },
+  {
+    path: 'dashboard',
+    component: HomeComponent,
+    canActivate: [CreatorGuard],
+    children: [
+      {
+        path: '',
+        component: DashboardComponent
       }
     ]
   },

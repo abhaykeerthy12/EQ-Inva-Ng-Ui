@@ -27,6 +27,9 @@
     <div routerLink="/users" *ngIf="IsAdmin() || IsCreator()" routerLinkActive="active" class="linkDiv">
         <h5>Users</h5>
     </div>
+    <div routerLink="/dashboard" *ngIf="IsCreator()" routerLinkActive="active" class="linkDiv">
+        <h5>Dashboard</h5>
+    </div>
     <div routerLink="/settings" routerLinkActive="active" class="linkDiv">
         <h5>Settings</h5>
     </div>

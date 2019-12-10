@@ -32,6 +32,12 @@ import { UserGuard } from './shared/guards/user.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { ManageRequestsComponent } from './core/home/advanced/manage-requests/manage-requests.component';
+import { DashboardComponent } from './core/home/advanced/dashboard/dashboard.component';
+import { CreatorGuard } from './shared/guards/creator.guard';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+
+
 
 
 
@@ -52,7 +58,8 @@ import { ManageRequestsComponent } from './core/home/advanced/manage-requests/ma
     ContactComponent,
     ManageProductsComponent,
     ManageUsersComponent,
-    ManageRequestsComponent
+    ManageRequestsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +76,8 @@ import { ManageRequestsComponent } from './core/home/advanced/manage-requests/ma
     ExcelModule,
     PDFModule,
     UploadModule,
-    DropDownsModule 
+    DropDownsModule,
+    ChartsModule 
   ],
   providers: [
     {
@@ -77,7 +85,7 @@ import { ManageRequestsComponent } from './core/home/advanced/manage-requests/ma
       useClass: AuthInterceptorService,
       multi: true
     },
-    UserService, RequestService, ProductService, , AuthGuard, AdminGuard, UserGuard, ManagerGuard
+    UserService, RequestService, ProductService, , AuthGuard, AdminGuard, UserGuard, ManagerGuard, CreatorGuard
   ],
   bootstrap: [AppComponent]
 })

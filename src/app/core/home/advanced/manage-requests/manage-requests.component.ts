@@ -49,6 +49,7 @@ export class ManageRequestsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.LoadRequest(); 
     this.isManager = this._userService.IsManager();
+    this.isCreator = this._userService.IsCreator();
   }
 
   requests = [];
@@ -72,6 +73,7 @@ export class ManageRequestsComponent implements OnInit, OnDestroy {
   ProductPrice:number;
   SummaryString:string = "";
   isManager:boolean = false;
+  isCreator:boolean = false;
   
  // Get all requests from the server
  LoadRequest(){
@@ -79,7 +81,7 @@ export class ManageRequestsComponent implements OnInit, OnDestroy {
   this._subscription =  this._requestService.GetRequest().subscribe(
     (data) => {
         data.forEach(value => {
-          if(this.isManager){
+          if(this.isManager || this.isCreator){
             if(value.Status == "Pending"){
               this.requests.push(value);
             }

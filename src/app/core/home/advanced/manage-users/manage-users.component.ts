@@ -185,7 +185,7 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
     });
 
     let RoleOfUser = userId =>{   
-     roleOfUser = "User";   
+     roleOfUser = "User"; 
      this.realroles.forEach(role => {
         if(userId == role.UserId){
             return  roleOfUser = role.Role;
@@ -197,14 +197,16 @@ export class ManageUsersComponent implements OnInit, OnDestroy {
       // show user apart from app user
       if(user.Id != user.CurrentUserId){
         RoleOfUser(user.Id);
-        this.rows.push({
-          "UserId": user.Id,
-          "Name": user.Name,
-          "Email": user.Email,
-          "Department": user.Department,
-          "Is_Active": user.Is_Active,
-          "Role": roleOfUser
-          });
+        if(roleOfUser != "Creator"){
+          this.rows.push({
+            "UserId": user.Id,
+            "Name": user.Name,
+            "Email": user.Email,
+            "Department": user.Department,
+            "Is_Active": user.Is_Active,
+            "Role": roleOfUser
+            });
+        }
       }
     });
 

@@ -78,10 +78,22 @@
     #Content{
         margin: auto;
         margin-top: -150px;
-        margin-bottom: 500px;
-        height: 700px;
+        margin-bottom: 0;
+        height: 250px;
         padding: 3rem;
 
+    }
+
+    #Features{
+        h2{margin-bottom: 3rem;}
+        p{font-size: 25px;}
+        h5{font-size: 30px;}
+    }
+
+    #FooterHelper{
+        height: 400px;
+        display: block;
+        margin-top: 5rem;
     }
 
 }
