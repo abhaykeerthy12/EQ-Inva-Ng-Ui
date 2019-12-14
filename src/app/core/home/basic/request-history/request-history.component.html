@@ -1,1 +1,60 @@
-<p>request-history works!</p>
+<section id="AddRequests" class="m-auto" #container>
+
+<h2 class="pt-2">Request History</h2><hr>
+
+<article>
+
+    <div class="card p-2 shadow">
+
+    <div class="card-body">
+
+        <kendo-grid 
+        [kendoGridBinding]="rows" 
+        [height]="410"
+        [pageSize]="10"
+        [pageable]="true"
+        [resizable]="true"
+        [sortable]="{
+            allowUnsort: 'true',
+            mode: 'multiple'
+        }"
+        [sort]="sort"
+        (sortChange)="sortChange($event)"
+        >
+
+
+        <ng-template kendoGridToolbarTemplate>
+            <div class="mt-2">
+                <input type="text" 
+                        class="form-control" placeholder="Search!"
+                        id="SearchFieldAddProduct"
+                        #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)">          
+            </div>
+        </ng-template>
+            
+        <kendo-grid-column field="Name" title="Name" width="200">
+        </kendo-grid-column>
+        <kendo-grid-column field="Type" title="Type" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column field="Quantity" title="Quantity" width="100">
+        </kendo-grid-column>
+        <kendo-grid-column field="Status" title="Status" width="150">
+        </kendo-grid-column>
+        <kendo-grid-column field="Summary" title="Summary" width="200">
+        </kendo-grid-column>
+        <kendo-grid-column field="Date" title="Date" width="100">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <span>
+                {{dataItem.Date | date}}
+                </span>
+            </ng-template>
+        </kendo-grid-column>
+        </kendo-grid>
+
+    </div>
+
+    </div>
+
+</article>
+        
+</section>

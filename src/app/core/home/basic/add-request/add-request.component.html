@@ -1,3 +1,102 @@
-<section id="AddRequestSection">
-    <p>add-request works!</p>
+<section id="AddRequests" class="m-auto" #container>
+
+<div id="Title" class="row">
+    <div class="col-11 pt-2">
+        <h2>Welcome!</h2>
+    </div>
+    <!-- <div class="col-lg-4 text-center pt-2" *ngIf="!ChPwd">
+        <p>
+            <em>Change Default Password!</em>
+            <button class="btn btn-info ml-3">Open Settings</button>
+        </p>
+    </div> -->
+    <!-- Default dropleft button -->
+    <div class="dropdown text-center col-1 pt-3" *ngIf="pendingRequestFlag">
+        <p data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="im im-bell-active text-primary"></i>
+        </p>
+        <div class="dropdown-menu">
+            <!-- Dropdown menu links -->
+            <a class="dropdown-item" routerLink="/settings" routerLinkActive="active" *ngIf="!ChPwd">
+                Change Default Password
+            </a>
+            <div class="dropdown-divider" *ngIf="!ChPwd"></div>
+            <a class="dropdown-item" routerLink="/requests" routerLinkActive="active">
+                {{notifyText}}
+            </a>
+        </div>
+    </div>
+</div>
+<hr>
+
+<article>
+
+    <div class="card p-2 shadow">
+
+    <div class="card-body">
+
+        <kendo-grid 
+        [kendoGridBinding]="rows" 
+        [height]="410"
+        [pageSize]="10"
+        [pageable]="true"
+        [resizable]="true"
+        [selectable]="selectableSettings"
+        (selectionChange)="selectedKeysChange($event)"
+        [sortable]="{
+            allowUnsort: 'true',
+            mode: 'multiple'
+        }"
+        [sort]="sort"
+        (sortChange)="sortChange($event)"
+        >
+
+
+        <ng-template kendoGridToolbarTemplate>
+        <div class="row">
+        <div class="col-lg-12 mt-2" *ngIf="!Selected">
+            <input type="text" 
+                    class="form-control" placeholder="Search!"
+                    id="SearchFieldAddProduct"
+                    #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)">
+        </div> 
+        <div class="col-lg-6 mt-2" *ngIf="Selected">
+            <input type="text" 
+                    class="form-control" placeholder="Search!"
+                    id="SearchFieldAddProduct"
+                    #SearchFieldAddProduct (keyup)="Search(SearchFieldAddProduct.value)">
+        </div> 
+        <div class="col-lg-6 mt-2" *ngIf="Selected">
+            <form [formGroup]="formGroup" (ngSubmit)="AddRequest()">
+                <div class="input-group">
+                    <input type="number" 
+                        class="form-control" id="QuantityField" 
+                        min="1"  formControlName="Quantity"
+                        placeholder="Enter the Required Quantity" 
+                        aria-describedby="button-addon" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" type="submit" id="button-addon">Confirm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+        </ng-template>
+            
+        <kendo-grid-checkbox-column width="40"></kendo-grid-checkbox-column>
+        <kendo-grid-column field="Name" title="Name" width="250">
+        </kendo-grid-column>
+        <kendo-grid-column field="Type" title="Type" width="170">
+        </kendo-grid-column>
+        <kendo-grid-column field="Quantity" editor="numeric" title="Quantity" width="170">
+        </kendo-grid-column>
+        </kendo-grid>
+
+    </div>
+
+    </div>
+
+
+</article>
+        
 </section>

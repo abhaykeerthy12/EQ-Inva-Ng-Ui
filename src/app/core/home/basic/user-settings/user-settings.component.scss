@@ -1,0 +1,30 @@
+#AddRequests{
+    #ProfileDetails{
+        img{
+            width: 250px;
+            height: 250px;
+        }
+    }
+
+    #EditForm{
+        img{
+            width: 150px;
+            height: 150px;
+        }
+        .btn-group{
+            width: 100%;
+        }
+    }
+
+    #EQInvaDetails{
+        img{
+            width: 90px;
+            height: 90px;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        h2{
+            font-size: 300% !important;
+        }
+    }
+}

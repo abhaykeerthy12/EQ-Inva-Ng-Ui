@@ -5,9 +5,34 @@
 
 ::ng-deep .ng-sidebar{
     background-color: #67696d !important;
-    padding: 4rem;
     color: white;
     margin-top: 3.5rem;
+    z-index: 10 !important;
+
+    #FirstLink{
+        margin-top: 2rem;
+    }
+
+    .linkDiv{
+        padding-top: 0.5rem;
+        padding-left: 2rem;
+        padding-right: 5rem;
+        padding-bottom: 0.5rem;
+        cursor: pointer;
+    }
+    .active{
+        background-color: #e4e7ec !important;
+        color: #000 !important;
+    }
+
+    .linkDiv,.active, 
+    .linkDiv:active, .active:active, 
+    .linkDiv:focus, .active:focus, 
+    .linkDiv:hover, .active:hover{
+        text-decoration: none;
+        border: none;
+        outline: none;
+    }
 
 } 
 
@@ -15,4 +40,8 @@
     margin: 0;
     padding: 0;
     margin-top: 3.5rem;
+}
+
+#Logout{
+    cursor: pointer;
 }

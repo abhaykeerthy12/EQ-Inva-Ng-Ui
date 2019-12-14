@@ -1,0 +1,38 @@
+@media screen and (max-width: 990px) {
+
+    footer{
+        #FooterImg{
+            border-right: none !important;
+            border-bottom: 1px solid #eee !important;
+        }
+
+        #FooterText{
+            margin-top: 3rem;
+        }
+    }    
+
+}
+
+#ExternalSection{
+    margin-top: 3.5rem;
+}
+
+footer{
+    
+    #FooterImg {
+    
+        text-align: center;
+        border-right: 1px solid #eee;
+
+        img{
+        height: 150px;
+        width: 150;
+        }
+    }
+
+    #SIcons{
+        i{
+            font-size: 15px;
+        }
+    }
+}

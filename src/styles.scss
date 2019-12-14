@@ -2,15 +2,35 @@
 
 
 // Set the variables here.
+$accent: #353a40;
+@import "~@progress/kendo-theme-bootstrap/dist/all.scss";
 
-@import "~@progress/kendo-theme-bootstrap/scss/button";
-
-html, body{
-    width: 100%;
+* {
+    box-sizing: border-box;
+   }
+   *:before,
+   *:after {
+    box-sizing: border-box;
+   }
+   html,
+   body {
     height: 100%;
+    position: relative;
     padding: 0;
     margin: 0;
-}
+   }
+   .main-container {
+    min-height: 100vh; /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px; /* height of your footer */
+   }
+   footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+   }
 
 a, a:focus, a:hover, a:active{
     color: #fff;
@@ -18,4 +38,6 @@ a, a:focus, a:hover, a:active{
     text-decoration: none;
     outline: none;
 }
-// #f32a2a
+.card-header, .card-footer{
+    background-color: #fff;
+}

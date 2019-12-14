@@ -1,0 +1,15 @@
+@media screen and (max-width: 990px) {
+
+    kendo-grid {
+        height: 500px !important;
+    }
+
+}
+
+#AddRequests {
+    #Title{
+        h2, P{
+            margin-bottom: 0 !important;
+        }
+    }
+}

@@ -1,1 +1,83 @@
-<p>user-settings works!</p>
+<section id="AddRequests" class="m-auto" #container>
+
+<h2 class="pt-2">Settings</h2><hr>
+
+<article>
+
+    <div class="card p-2 shadow">
+
+    <div class="card-body row">
+
+        <div id="ProfileDetails" class="col-lg-6 text-center" *ngIf="!EditFlag && !ChPwdFlag">
+            <div>
+                <img src="../../../../../assets/images/profile-pic.svg" alt="profile-pic">
+            </div>
+            <div>
+                <h2 class="mb-3">{{ Name | titlecase }}</h2>
+                <h6 class="mb-3">{{ Email }}</h6>
+                <button class="btn btn-dark mb-2" (click)="EditFlag = !EditFlag">Edit Me!</button>
+            </div>
+        </div>
+
+        <!-- edit form -->
+        <div id="EditForm" class="col-lg-6" *ngIf="EditFlag && !ChPwdFlag">
+            <h3>Edit</h3>
+            <div class="text-center">
+                <img src="../../../../../assets/images/edit-pic.svg" alt="edit-pic">
+            </div>
+            <div>
+                <form [formGroup]="EditForm" (ngSubmit)="Update()">
+                    <input type="text" class="form-control mb-3" 
+                           formControlName="Name" placeholder="Enter new name">
+                    <input type="email" class="form-control mb-3" 
+                           formControlName="Email" placeholder="Enter new email">
+                    <button type="submit" class="col-lg-4 btn btn-dark mb-3">Update Me!</button>
+                </form>            
+                <div class="btn-group mt-2">   
+                    <button class="col-lg-4 btn btn-secondary mb-2" (click)="ChPwdFlag = !ChPwdFlag">Change Password?</button>
+                    <button class="col-lg-4 btn btn-outline-dark mb-2" (click)="EditFlag = !EditFlag">Close</button>
+                </div>
+            </div>
+        </div>
+        <!-- edit form -->
+
+        <!-- chpwd form -->
+        <div id="ChPwd" class="col-lg-6" *ngIf="ChPwdFlag">
+            <h3 class="mb-2">Change Password</h3>
+            <div class="mt-5">
+                <form [formGroup]="ChangePwdForm" (ngSubmit)="ChangePassword()">
+                    <input type="password" class="form-control mt-4 mb-4" 
+                           formControlName="OldPassword" placeholder="Enter current password">
+                    <input type="password" class="form-control mt-4 mb-4" 
+                           formControlName="NewPassword" placeholder="Enter new password">
+                    <input type="password" class="form-control mt-4 mb-4" 
+                           formControlName="ConfirmPassword" placeholder="Confirm new password">
+                    <button type="submit" class="col-lg-4 btn btn-dark mt-3 mb-4" >Change Password</button>
+                </form>            
+                <div>   
+                    <button class="col-lg-4 btn btn-secondary mt-3 mb-1" 
+                            (click)="ChPwdFlag = !ChPwdFlag">Back</button>
+                </div>
+            </div>
+        </div>
+        <!-- chpwd form -->
+
+        <div class="col-lg-6 text-center">
+            <div id="EQInvaDetails">
+                <img src="../../../../../assets/images/equiniti-logo-rounded.png" alt="eq-logo">
+                <h2>Equiniti Inva</h2>
+                <h6>An Inventory Management Solution From Equiniti</h6><hr width="70%">
+                <p class="px-3 py-2 mb-3">Equiniti Inva is a product aiming at improving  <br> the inventory management experience.
+                   We are in the pursuit of enhancing the application capabilities day by day, <br> Hope you like it.
+                   <br> More features are coming soon, Stay tuned..!
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+</article>
+        
+</section>

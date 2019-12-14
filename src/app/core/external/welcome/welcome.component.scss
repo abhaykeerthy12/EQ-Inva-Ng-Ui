@@ -1,0 +1,121 @@
+@media screen and (max-width: 990px) {
+    #WelcomeSection{
+        #ShowCase{
+            height: 400px !important;
+            #TitleBox{
+                margin: auto !important;
+                width: 100% !important;
+                padding-top: 0 !important;
+
+                #imgDiv, #TitleDiv{
+                    text-align: center !important;
+                }               
+            }   
+        }
+
+        #Hero{
+            margin-bottom: 50px !important;
+        }
+
+        #Login{
+            margin-top: 100px !important;
+            width: 90% !important;
+            margin: auto !important;
+            height: 420px !important;
+        }
+
+        #Content{
+            margin-top: 50px !important;
+        }
+
+        #FooterHelper{
+            height: 550px !important;
+        }
+    }
+}
+
+#WelcomeSection{
+    #ShowCase{
+        height: 350px;
+        background-image: url('../../../../assets/images/EQ-Bg.jpg');
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 4rem;
+        #TitleBox{
+            width: 70%;
+            color: #fff;
+            padding-top: 2rem;
+            #imgDiv{
+                text-align: end;
+                img{
+                    height: 150px;
+                    width: 150px;
+                }
+            }
+            #TitleDiv{
+                text-align: start;
+                h1{
+                    margin-top: 2.5rem;
+                    font-size: 400% !important;
+                }
+            }
+
+        }   
+    }
+
+
+    #Hero{
+        height: 50px;
+        background:linear-gradient(90deg, #df3a3d 0%,#754cd2 100% );
+    }
+
+    #Login{
+        height: 380px;
+        margin-top: -210px;
+        width: 40%;
+        margin-left: auto;
+        margin-right: 3rem;
+        z-index: 10 !important;
+    }
+
+    #Content{
+        margin: auto;
+        margin-top: -150px;
+        margin-bottom: 0;
+        height: 250px;
+        padding: 3rem;
+
+    }
+
+    #Features{
+        margin-bottom: 5rem !important;
+        h2{margin-bottom: 3rem;font-size: 300% !important}
+        p{font-size: 20px;}
+        h5{font-size: 30px;}
+
+    }
+
+    #FeatureCards{
+        background:linear-gradient(90deg, #e0eafc 0%,#cfdef3 100% );
+        // color: #fff;;
+        .card{
+            border: none;
+            background-color: transparent;
+        }
+        img{height: 200px !important;}
+        p{font-size: 20px;}
+    }
+
+    #EqText{
+        h2{margin-bottom: 3rem;font-size: 300% !important}
+        p{font-size: 20px;}
+    }
+
+    #FooterHelper{
+        height: 300px;
+        display: block;
+        margin-top: 5rem;
+    }
+
+}
