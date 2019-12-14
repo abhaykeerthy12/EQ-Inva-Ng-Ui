@@ -1,14 +1,30 @@
 <section id="AddRequests" class="m-auto" #container>
 
 <div id="Title" class="row">
-    <div class="col-lg-8 pt-2">
+    <div class="col-11 pt-2">
         <h2>Welcome!</h2>
     </div>
-    <div class="col-lg-4 text-center pt-2" *ngIf="!ChPwd">
+    <!-- <div class="col-lg-4 text-center pt-2" *ngIf="!ChPwd">
         <p>
             <em>Change Default Password!</em>
             <button class="btn btn-info ml-3">Open Settings</button>
         </p>
+    </div> -->
+    <!-- Default dropleft button -->
+    <div class="dropdown text-center col-1 pt-3" *ngIf="pendingRequestFlag">
+        <p data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="im im-bell-active text-primary"></i>
+        </p>
+        <div class="dropdown-menu">
+            <!-- Dropdown menu links -->
+            <a class="dropdown-item" routerLink="/settings" routerLinkActive="active" *ngIf="!ChPwd">
+                Change Default Password
+            </a>
+            <div class="dropdown-divider" *ngIf="!ChPwd"></div>
+            <a class="dropdown-item" routerLink="/requests" routerLinkActive="active">
+                {{notifyText}}
+            </a>
+        </div>
     </div>
 </div>
 <hr>

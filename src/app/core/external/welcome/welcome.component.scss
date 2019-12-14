@@ -27,6 +27,10 @@
         #Content{
             margin-top: 50px !important;
         }
+
+        #FooterHelper{
+            height: 550px !important;
+        }
     }
 }
 
@@ -85,13 +89,31 @@
     }
 
     #Features{
-        h2{margin-bottom: 3rem;}
-        p{font-size: 25px;}
+        margin-bottom: 5rem !important;
+        h2{margin-bottom: 3rem;font-size: 300% !important}
+        p{font-size: 20px;}
         h5{font-size: 30px;}
+
+    }
+
+    #FeatureCards{
+        background:linear-gradient(90deg, #e0eafc 0%,#cfdef3 100% );
+        // color: #fff;;
+        .card{
+            border: none;
+            background-color: transparent;
+        }
+        img{height: 200px !important;}
+        p{font-size: 20px;}
+    }
+
+    #EqText{
+        h2{margin-bottom: 3rem;font-size: 300% !important}
+        p{font-size: 20px;}
     }
 
     #FooterHelper{
-        height: 400px;
+        height: 300px;
         display: block;
         margin-top: 5rem;
     }

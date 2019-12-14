@@ -7,6 +7,7 @@ import { NotificationService } from '@progress/kendo-angular-notification';
 import { SelectableSettings } from '@progress/kendo-angular-grid';
 import { RequestService } from 'src/app/shared/services/request.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-request',
@@ -49,18 +50,26 @@ export class AddRequestComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.LoadProducts(); 
     this.LoadUser();
+    this.LoadRequest();
     this.CreateForm();
+    this.isCreator = this._userService.IsCreator();
+    this.isManager = this._userService.IsManager();
   }
 
   Tmprows = [];
   rows = [];
   realArray = [];
+  requests:number = 0;
   formGroup: FormGroup;
   EmployeeID = "";
   ProductID = "";
   ProductQuantity:number;
   Selected: boolean = false;
   ChPwd:boolean = true;
+  pendingRequestFlag:boolean = false;
+  notifyText:string = "No new notifications!"
+  isManager:boolean;
+  isCreator:boolean;
 
   // create a form to get details to export to request table
   CreateForm(){
@@ -80,6 +89,28 @@ export class AddRequestComponent implements OnInit, OnDestroy {
        });
     });
   }
+
+  // Get all requests from the server
+ LoadRequest(){
+  this.requests = 0;
+  this._subscription =  this._requestService.GetRequest().subscribe(
+    (data) => {
+        data.forEach(value => {
+          if(this.isManager || this.isCreator){
+            if(value.Status == "Pending"){
+              this.pendingRequestFlag = true;
+              this.requests += 1;
+            }
+          }else{
+            if(value.Status == "Proceed"){
+              this.pendingRequestFlag = true;
+              this.requests += 1;
+            }
+          }
+        });
+        this.notifyText = `You Have ${this.requests} Request Pending!`;
+    });
+}
   
   // get all products form the server
   LoadProducts(){

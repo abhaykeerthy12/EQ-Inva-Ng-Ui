@@ -156,6 +156,8 @@ IsCreator(){
 UserLogout(){
   localStorage.removeItem('ACCESS_TOKEN');
   localStorage.removeItem('Admin');
+  localStorage.removeItem('Name');
+  localStorage.removeItem('Department');
   localStorage.removeItem('Manager');
   localStorage.removeItem('Creator');
   this._router.navigate(['user/login']);

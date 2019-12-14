@@ -1,0 +1,58 @@
+@media screen and (max-width: 990px) {
+   
+    #ContactHero{
+        padding: 2rem !important;
+        div{
+            margin-left: 0 !important;
+        }
+    }
+    #FooterHelper{
+        height: 700px !important;
+    }
+}
+#ContactSection{
+    height: 100%;
+    margin-bottom: 10rem;
+    background:linear-gradient(90deg, #667eea 0%,#764ba2 100% );
+    #ContactHero{
+        min-height: 300px;
+        background:linear-gradient(90deg, #141e30 0%,#243b55 100% );
+        padding: 3rem;
+        div{
+            font-size: 200%;
+            color: white;
+            margin-top: 2rem;
+            margin-left: 1.5rem;
+            padding-left: 2rem;
+            border-left: 5px solid #df3a3d;
+        }
+    }
+
+    #ContactCard{
+        padding: 3rem;
+        margin: auto;
+        width: 90%;
+        min-height: 400px;
+        margin-top: -120px;
+        z-index: 1;
+        margin-bottom: 10rem;
+        font-size: 16px;
+        a{
+            cursor: pointer;
+            color: #000;
+        }
+    }
+
+    #CoverUp{
+        min-height: 75px;
+        background:transparent;
+        margin-top: -450px;
+    }
+
+    #FooterHelper{
+        height: 500px;
+        background:linear-gradient(90deg, #e3eafc 0%,#cfdef3 100% );
+        margin-bottom: 20rem;
+
+    }
+}

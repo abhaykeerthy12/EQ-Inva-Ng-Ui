@@ -40,7 +40,12 @@
                 </small>
             </div>
             
-            <button type="submit" class="btn btn-dark mb-5 shadow">Let's Go!</button>
+            <span *ngIf="(LoginForm.touched && LoginForm.invalid)">
+                <button class="btn btn-dark mb-5 shadow" [disabled]="!LoginForm.valid" >Error!</button>
+            </span>
+            <span *ngIf="(!LoginForm.touched || LoginForm.valid)">
+                <button type="submit" class="btn btn-dark mb-5 shadow">Let's Go!</button>
+            </span>     
 
         </form>
 
@@ -48,44 +53,96 @@
 
     <article id="Content" class="row">
         <h2 class="col-lg-6">A Privacy Focused Inventory Management Solution From Equiniti.</h2>
-    </article><hr width="60%" class="mb-5">
+    </article><hr width="60%" class="mb-5 mt-5">
 
-    <article id="Features" class="container text-center m-auto">
-        <h2 class="display-4">What Makes Inva Stand Out?</h2>
+    <article id="Features" class="container text-center">
+        <h2>What Makes Inva Stand Out?</h2>
         <div>
             <p>Inva is born with the prime motive of utilizing
                  the latest and greatest technologies <br> to solve one
                 of the biggest headache in the industry, <br> Inventory Management in an elegant way. <br>
                 Inva offers wide variety of features and reliability over any other in its class. <br>
-                Here are some core features which makes Inva special.
+                Here are some core features which makes Inva special!
             </p>
         </div>
     </article>
 
-    <article class="FeatureCards" class="mt-5 container">
-        <div class="row">
-        <div class="col-lg-4">
-            <div class="card">
-                <div class="card-body">
-                    
-                </div>
+    <article id="FeatureCards" class="mt-5 p-5">
+        <div class="row mt-5">
+            <div class="col-lg-6 card p-3">
+                <img class="img-fluid" src="../../../../assets/images/responsive-pic.svg" alt="No image sorry">
+            </div>
+            <div class="col-lg-6 card p-3 text-center">
+                <h2 class="mt-2">Responsive to the Core!</h2>
+                <p class="mt-3">
+                    Let it be tiny or huge, <br> Inva scales perfectly across devices. <br> 
+                    Inva, with the power of Bootstrap <br> enhances your experience to the next level!
+                </p>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card">
-
+        <div class="row mt-5">
+            <div class="col-lg-6 card p-3 text-center">
+                <h2 class="mt-2">Intelligent as it Gets!</h2>
+                <p class="mt-3">
+                    Inva analyses usage and suggest improvements <br> by providing
+                    visual representation by utilizing <br> 
+                    Kendo Ui from Telerik to make <br> 
+                    Inventory Management a breeze!
+                </p>
+            </div>
+            <div class="col-lg-6 card p-3">
+                <img class="img-fluid" src="../../../../assets/images/chart-pic.svg" alt="No image sorry">
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card">
-
+        <div class="row mt-5">
+            <div class="col-lg-6 card p-3">
+                <img class="img-fluid" src="../../../../assets/images/excel-pic.svg" alt="No image sorry">
+            </div>
+            <div class="col-lg-6 card p-3 text-center">
+                <h2 class="mt-2">Don't Repeat!</h2>
+                <p class="mt-3">
+                    Inva is made with ease of use in mind. <br> That also includes accelerating  the "Getting Started" Phase, <br> Inva has the ability to import your <br>
+                      existing excel datas to that app with just a click!
+                </p>
             </div>
         </div>
+        <div class="row mt-5">
+            <div class="col-lg-6 card p-3 text-center">
+                <h2 class="mt-2">Never miss an Update!</h2>
+                <p class="mt-3">
+                    In this busy world, <br>Inva helps you to keep track of the app activity <br> through emails. <br>
+                    So you dont miss any important updates!
+                </p>
+            </div>
+            <div class="col-lg-6 card p-3">
+                <img class="img-fluid" src="../../../../assets/images/email-pic.svg" alt="No image sorry">
+            </div>
         </div>
     </article>
+
+    <article id="EqText" class="mt-5 p-5 text-center">
+        <h2>Equiniti</h2>
+        <div>
+            <p>
+                Equiniti Group is an intelligent provider of sophisticated technology,<br> 
+                administration, processing and payments services for complex and regulated administration,<br>
+                looking after 27 million consumers on behalf of the best known brands and public
+                sector organisations in the UK. <br> Equiniti has leading market position and longstanding
+                working relationships with c.70% of the FTSE 100. <br>
+                We deliver the critical processes
+                and innovative thinking that improve the effectiveness and profitability <br>
+                of the UK’s leading businesses. Our expertise is founded on providing
+                complex financial administration and <br> processing in regulated markets.
+                Today, we provide a broad range of outsourced administration, <br> payments management,
+                software solutions and advisory services <br> across a number of sectors including;
+                central and local public services, <br> pension schemes, banking and financial services,
+                large and <br> medium enterprises and listed companies.
+            </p>
+        </div>
+    </article><br>
 
     <article id="FooterHelper">
         
-    </article>
+    </article><br>
 
 </section>

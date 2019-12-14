@@ -1,14 +1,11 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { fade } from 'src/app/shared/animations/animations';
-import { Sidebar } from 'ng-sidebar';
 import { UserService } from '../../shared/services/user.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  animations: [ fade ]
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
@@ -45,7 +42,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this._shade = false;
     }
   }
-
 
   // check is user logged in
   IsLoggedIn(){
